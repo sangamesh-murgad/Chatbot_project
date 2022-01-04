@@ -1,0 +1,574 @@
+Questions,Answers,Labels
+What do you mean by Clustering?,Clustering is an unsupervised machine learning technique that groups similar observations in a cluster such that the observations in the same group are more similar to each other than the observations in the other groups i.e observations in different clusters are dissimilar to each other.,Hierarchial
+What is a Hierarchical Clustering Algorithm?,"Hierarchical Clustering i.e, an unsupervised machine learning algorithm is used to group the unlabeled datasets into a single group, named, a cluster. Sometimes, it is also known as  Hierarchical cluster analysis (HCA).
+In this algorithm, we try to create the hierarchy of clusters in the form of a tree, and this tree-shaped structure is known as the Dendrogram.",Hierarchial
+What are the various types of Hierarchical Clustering?,"The two different types of Hierarchical Clustering technique are as follows:
+Agglomerative: It is a bottom-up approach, in which the algorithm starts with taking all data points as single clusters and merging them until one cluster is left.
+Divisive: It is just the opposite of the agglomerative algorithm as it is a top-down approach.",Hierarchial
+Explain the Agglomerative Hierarchical Clustering algorithm with the help of an example.,"Initially, each data point is considered as an individual cluster in this technique. After each iteration, the similar clusters merge with other clusters and the merging will stop until one cluster or K clusters are formed. The steps of the agglomerative algorithm are as follows:
+1. Compute the proximity matrix.
+2. Let each data point be a cluster.
+3. Repeat this step: Combine the two closest clusters and accordingly update the proximity matrix.
+4. Until only a single cluster remains.",Hierarchial
+Describe the Divisive Hierarchical Clustering Algorithm in detail.,"In simple words, Divisive Hierarchical Clustering is working in exactly the opposite way as Agglomerative Hierarchical Clustering. In Divisive Hierarchical Clustering, we consider all the data points as a single cluster, and after each iteration, we separate the data points from the cluster which are not similar. Each data point that is separated is considered as an individual cluster. Finally, we’ll be remaining with n number of clusters. Since we aredividing the single clusters into n clusters, it is named Divisive Hierarchical Clustering. This technique is not much used in real-world applications.",Hierarchial
+Explain the different linkage methods used in the Hierarchical Clustering Algorithm.,"The popular linkage methods used in Hierarchical Clustering are as follows:
+Complete-linkage: In this method, the distance between two clusters is defined as the maximum distance between two data points from each cluster.
+Single-linkage: In this method, the distance between two clusters is defined as the minimum distance between two data points in each cluster.
+Average-linkage: In this method, the distance between two clusters is defined as the average distance between each data point in one cluster to every data point in the other cluster.
+Centroid-linkage: In this method, we find the centroid of cluster 1 and the centroid of cluster 2 and then calculate the distance between the two before merging.",Hierarchial
+List down the pros and cons of complete and single linkages methods in the Hierarchical Clustering Algorithm.,"Pros of Single-linkage: This approach can differentiate between non-elliptical shapes as long as the gap between the two clusters is not small.
+Cons of Single-linkage: This approach cannot separate clusters properly if there is noise between clusters.
+Pros of Complete-linkage: This approach gives well-separating clusters if there is some kind of noise present between clusters.
+Cons of Complete-Linkage: This approach is biased towards globular clusters. It tends to break large clusters.",Hierarchial
+What is the group average method for calculating the similarity between two clusters for the Hierarchical Clustering Algorithm?,"In the group average method, we take all the pairs of data points and calculate their similarities and find the average of all the similarities. Mathematically this can be written as,
+sim(C1, C2) = ? sim(Pi, Pj)/|C1|*|C2|
+where Pi ? C1 & Pj ? C2",Hierarchial
+Explain Ward's method for calculating the similarity between two clusters in the Hierarchical Clustering Algorithm.,"In this method, we find the similarity between clusters by calculating the sum of the square of the distances Pi and Pj. Mathematically this can be written as,
+sim(C1, C2) = ? (dist(Pi, Pj))²/|C1|*|C2|
+Pros of Ward’s method: This approach also does well in separating clusters if there are some of the noisy points or outliers present between the clusters.
+Cons of Ward’s method: This approach is biased towards globular clusters.",Hierarchial
+What is a dendrogram in Hierarchical Clustering Algorithm?,"A dendrogram is defined as a tree-like structure that is mainly used to store each step as a memory that the Hierarchical clustering algorithm performs. In the dendrogram plot, the Y-axis represents the Euclidean distances between the observations, and the X-axis represents all the observations present in the given dataset.",Hierarchial
+Explain the working of dendrogram in the agglomerative Hierarchical Clustering Algorithm.,"Step by step working of the algorithm:
+Step-1: Firstly, the data points P2 and P3 merged together and form a cluster, correspondingly a dendrogram is created, which connects P2 and P3 with a rectangular shape. The height is decided according to the Euclidean distance between the data points.
+Step-2: In the next step, P5 and P6 form a cluster, and the corresponding dendrogram is created. It is higher than the previous, as the Euclidean distance between P5 and P6 is a little bit greater than the P2 and P3.
+Step-3: Again, two new dendrograms are formed that combine P1, P2, and P3 in one dendrogram, and P4, P5, and P6, in another dendrogram.
+Step-4: At last, the final dendrogram is formed that combines all the data points together.",Hierarchial
+Explain the different parts of dendrograms in the Hierarchical Clustering Algorithm.,"A dendrogram can be understood as a column graph or a row graph. Some dendrograms are circular or have a fluid shape, but the software will usually produce a row or column graph. No matter what the shape, the basic graph consists of clades and leaves.
+For arranging the Clades (branch), take the help of how similar (or dissimilar) they are. Clades that are having or close to the same height are similar to each other; whereas clades with different heights are dissimilar from each other, which implies that the more the value of the difference in height, the more will be dissimilar. Each clade has one or more leaves. Theoretically, a clade can have an infinite amount of leaves but the more leaves we have, the harder the dendrogram will be to read and understand with the help of naked eyes.",Hierarchial
+How can you find the clusters to have upon looking at the dendrogram?,"In a dendrogram, look for the largest vertical line which doesn’t cross any horizontal line. With the help of this line, we can draw a horizontal line and then, the points where this horizontal line cross over the various vertical lines, we count all those intersecting points, and then count of intersecting points is the ideal answer for the number of clusters the dataset can have.",Hierarchial
+What is Space and Time Complexity of the Hierarchical Clustering Algorithm?,"Space complexity: Hierarchical Clustering Technique requires very high space when the number of observations in our dataset is more since we need to store the similarity matrix in the RAM. So, the space complexity is the order of the square of n.
+Space complexity = O(n²) where n is the number of observations.
+Time complexity: Since we have to perform n iterations and in each iteration, we need to update the proximity matrix and also restore that matrix, therefore the time complexity is also very high. So, the time complexity is the order of the cube of n.
+Time complexity = O(n³) where n is the number of observations.",Hierarchial
+List down some of the possible conditions for producing two different dendrograms using an agglomerative Clustering algorithm with the same dataset.,The given situation happens due to either Change in Proximity function or Change in the number of data points or variables. These changes will lead to different Clustering results and hence different dendrograms.,Hierarchial
+"For the dendrogram given below, find the most appropriate number of clusters for the data points of the given dataset.",To take the decision for the number of clusters that can best depict different clusters can be chosen by carefully observing the dendrogram formed during the algorithm run. The best choice of the number of clusters is the number of vertical lines in the dendrogram intersect by a horizontal line that can transverse the maximum distance vertically without intersecting a cluster.,Hierarchial
+What are the conditions to stop combining the clusters in the Hierarchical Clustering Algorithm?,"Some of the popular approaches to stop combining the clusters are as follows:
+Approach 1: Pick several clusters(k) upfront
+When we don’t want to form, for example, 250 clusters, then we choose the K value. Therefore, we decide the number of clusters (say, the first five or six) required in the beginning, and we complete the process when we reach the value K. This is done so that we can put a limit on the incoming information. It becomes very important especially when we are feeding it into another algorithm that probably requires three or four values.
+Possible challenges: This approach only makes sense when you know the data well or you have some domain knowledge when you’re clustering with K clusters. But if you’re analyzing a brand new dataset, then you may not know how many clusters we are required.
+Approach 2: Stop combining the clusters when the next merging of clusters would form a cluster with low cohesion.
+We keep clustering until the next combination of clusters gives a bad cluster with a low cohesion setup. This implies that the points are so close to being in both the clusters that it doesn’t make sense to keep them together.
+Approach 3:
+Approach 3.1: Diameter of a cluster
+The diameter of a cluster is defined as the maximum distance between any pair of observations in the cluster.
+We stop combining the clusters when the diameter of a new cluster formed exceeds the threshold. Moreover, we don’t want the two clusters to overlap as the diameter increases.
+Approach 3.2: Radius of a cluster
+The radius of a cluster is defined as the maximum distance of a point from the centroid.
+We stop combining the clusters when the radius of a new cluster formed exceeds the threshold(decided by the user itself according to the problem statement).",Hierarchial
+How to Find the Optimal Number of Clusters in Agglomerative Clustering Algorithm?,"To find the optimal number of clusters, Silhouette Score is considered to be one of the popular approaches. This technique measures how close each of the observations in a cluster is to the observation in its neighboring clusters. The range of the Silhouette Scores is from -1 to +1. Higher the value of the Silhouette Score indicates observations are well clustered.
+Silhouette Score = 1 describes that the data point (i) is correctly and well-matched in the cluster assignment.",Hierarchial
+How can we measure the goodness of the clusters in the Hierarchical Clustering Algorithm?,"There are many measures to find the goodness of clusters but the most popular one is the Dunn’s Index. Dunn’s index is defined as the ratio of the minimum inter-cluster distances to the maximum intra-cluster diameter and the diameter of a cluster is calculated as the distance between its two furthermost points i.e, maximum distance from each other.",Hierarchial
+What are the advantages and disadvantages of the Hierarchical Clustering Algorithm?,"Advantages of Hierarchical Clustering:
+We can obtain the optimal number of clusters from the model itself, human intervention not required.
+Dendrograms help us in clear visualization, which is practical and easy to understand.
+Disadvantages of Hierarchical Clustering:
+Not suitable for large datasets due to high time and space complexity.
+There is no mathematical objective for Hierarchical clustering.
+All the approaches to calculate the similarity between clusters has their own disadvantages.",Hierarchial
+What is K means Clustering Algorithm?,K Means algorithm is a centroid-based clustering (unsupervised) technique. This technique groups the dataset into k different clusters having an almost equal number of points. Each of the clusters has a centroid point which represents the mean of the data points lying in that cluster. The idea of the K-Means algorithm is to find k-centroid points and every point in the dataset will belong to either of the k-sets having minimum Euclidean distance.,k_means
+What is Lloyd's algorithm for Clustering?,"It is an approximation iterative algorithm that is used to cluster the data points. The steps of this algorithm are as follows:
+1. Initialization
+2. Assignment
+3. Update Centroid
+4. Repeat Steps 2 and 3 until convergence
+Step-1:  Randomly initialized k-centroids from the data points.
+Step-2: For each observation in the dataset, calculate the euclidean distance between the point and all centroids. Then, assign a particular observation to the cluster with the nearest centroid.
+Step-3: Now, observations in the clusters are changed. Therefore, update the value of the centroid with the new mean(average of all observations)value.
+Step-4: Repeat steps 2 and 3 until the algorithm converges. If convergence is achieved then break the loop. Convergence refers to the condition where the previous value of centroids is equal to the updated value after the algorithm run.",k_means
+Is Feature Scaling required for the K means Algorithm?,"Yes, K-Means typically needs to have some form of normalization done on the datasets to work properly since it is sensitive to both the mean and variance of the datasets. For performing feature scaling, generally, StandardScaler is recommended, but depending on the specific use cases, other techniques might be more suitable as well.
+For Example, let’s have 2 variables, named age and salary where age is in the range of 20 to 60 and salary is in the range of 100-150K, since scales of these variables are different so when these variables are substituted in the euclidean distance formula, then the variable which is on the large scale suppresses the variable which is on the smaller scale. So, the impact of age will not be captured very clearly. Hence, you have to scale the variables to the same range using Standard Scaler, Min-Max Scaler, etc.",k_means
+Why do you prefer Euclidean distance over Manhattan distance in the K means Algorithm?,"Euclidean distance is preferred over Manhattan distance since Manhattan distance calculates distance only vertically or horizontally due to which it has dimension restrictions. On the contrary, Euclidean distance can be used in any space to calculate the distances between the data points. Since in K means algorithm the data points can be present in any dimension, so Euclidean distance is a more suitable option.",k_means
+Why is the plot of the within-cluster sum of squares error (inertia) vs K in K means clustering algorithm elbow-shaped? Discuss if there exists any other possibility for the same with proper explanation.,"Say, we have 10 different data points present, now consider the different cases:
+k=10: For the max value of k, all points behave as one cluster. So, within the cluster sum of squares is zero since only one data point is present in each of the clusters. So, at the max value of k, this should tend to zero.
+K=1: For the minimum value of k i.e, k=1, all these data points are present in the one cluster, and due to more points in the same cluster gives more variance i.e, more within-cluster sum of squares.
+Between K=1 from K=10: When you increase the value of k from 1 to 10, more points will go to other clusters, and hence the total within the cluster sum of squares (inertia) will come down. So, mostly this forms an elbow curve instead of other complex curves. Hence, we can conclude that there does not exist any other possibility for the plot.",k_means
+Which metrics can you use to find the accuracy of the K means Algorithm?,"There does not exist a correct answer to this question as k means being an unsupervised learning technique does not discuss anything about the output column. As a result, one can not get the accuracy number or values from the algorithm directly.",k_means
+What is a centroid point in K means Clustering?,Centroid point is the point that acts as a representative of a particular cluster and is the average of all the data points in the cluster which changes in each step (until convergence),k_means
+Does centroid initialization affect K means Algorithm?,"Yes, the final results of the k means algorithm depend on the centroid initialization as poor initialization can cause the algorithm to get stuck into an inferior local minimum.",k_means
+Discuss the optimization function for the K means Algorithm.,"The objective of the K-Means algorithm is to find the k (k=no of clusters) number of centroids from C1, C2,——, Ck which minimizes the within-cluster sum of squares i.e, the total sum over each cluster of the sum of the square of the distance between the point and its centroid. This cost comes under the NP-hard problem and therefore has exponential time complexity. So we come up with the idea of approximation using Lloyd’s Algorithm.",k_means
+What are the advantages and disadvantages of the K means Algorithm?,"Advantages:
+Easy to understand and implement.
+Computationally efficient for both training and prediction.
+Guaranteed convergence.
+Disadvantages:
+We need to provide the number of clusters as an input variable to the algorithm.
+It is very sensitive to the initialization process.
+Good at clustering when we are dealing with spherical cluster shapes, but it will perform poorly when dealing with more complicated shapes.
+Due to the leveraging of the euclidean distance function, it is sensitive to outliers.",k_means
+What are the challenges associated with K means Clustering?,"The major challenge associated with k means clustering is its initialization sensitivity. While finding the initial centroids for K-Means clustering using Lloyd’s algorithm, we were using randomization i.e, initial k-centroids were picked randomly from the data points. This Randomization in picking the k-centroids creates the problem of initialization sensitivity which tends to affect the final formed clusters. As a result, the final formed clusters depend on how initial centroids were picked.",k_means
+What are the ways to avoid the problem of initialization sensitivity in the K means Algorithm?,"There are two ways to avoid the problem of initialization sensitivity:
+Repeat K means: It basically repeats the algorithm again and again along with initializing the centroids followed by picking up the cluster which results in the small intracluster distance and large intercluster distance.
+K Means++: It is a smart centroid initialization technique.
+Amongst the above two techniques, K-Means++ is the best approach.",k_means
+What is the difference between K means and K means++ Clustering?,"In k-means, we randomly initialized the k number of centroids while in the k-means++ algorithm, firstly we initialized 1 centroid and for other centroids, we have to ensure that the next centroids are very far from the initial centroids which result in a lower possibility of the centroid being poorly initialized. As a result, the convergence is faster in K means++ clustering. Moreover, in order to implement the k-means++ clustering using the Scikit-learn library, we set the parameters to init = kmeans++ instead of random.",k_means
+How K means++ clustering Algorithm works?,"K Means++ algorithm is a smart technique for centroid initialization that initialized one centroid while ensuring the others to be far away from the chosen one resulting in faster convergence.
+The steps to follow for centroid initialization are:
+Step-1: Pick the first centroid point randomly.
+Step-2: Compute the distance of all points in the dataset from the selected centroid     
+Step-3: Make the point xi as the new centroid that is having maximum probability proportional to distance of xi from the farthest centroid
+Step-4: Repeat the above last two steps till you find k centroids.",k_means
+How to decide the optimal number of K in the K means Algorithm?,"In order to find the optimal value of k, we need to observe our business problem carefully, along with analyzing the business inputs as well as the person who works on that data so that a decent idea regarding the optimal number of clusters can be extracted. For Example, If we consider the data of a shopkeeper selling a product in which he will observe that some people buy things in summer, some in winter while some in between these two. So, the shopkeeper divides the customers into three categories. Therefore, K=3.
+In cases where we do not get inference from the data directly we often use the following mentioned techniques:
+Elbow Method – This method finds the point of inflection on a graph of the percentage of variance explained to the number of K and finds the elbow point.
+Silhouette method – The silhouette method calculates similarity/dissimilarity score between their assigned cluster and the next best (i.e, nearest) cluster for each of the data points.
+Moreover, there are also other techniques along with the above-mentioned ones to find the optimal no of k.",k_means
+What is the training and testing complexity of the K means Algorithm?,"If we use Lloyd’s algorithm, the complexity for training is: “K*I*N*M” where,
+K: It represents the number of clusters
+I: It represents the number of iterations
+N: It represents the sample size
+M: It represents the number of variables
+Conclusion: There is a significant Impact on capping the number of iterations. Predicting complexity in terms of Big-O notation: “K*N*M”",k_means
+Is it possible that the assignment of data points to clusters does not change between successive iterations in the K means Algorithm?,"When the K-Means algorithm has reached the local or global minima, it will not change the assignment of data points to clusters for two successive iterations during the algorithm run.",k_means
+Explain some cases where K means clustering fails to give good results.,"The K means clustering algorithm fails to give good results in the below-mentioned cases:
+When the dataset contains outliers
+When the density spread of data points across the data space is different.
+When the data points follow a non-convex shape.",k_means
+How to perform K means on larger datasets to make it faster?,"The idea behind this is mini-batch k means, which is an alternative to the traditional k means clustering algorithm that provides better performance for training on larger datasets. It leverages the mini-batches of data, taken at random to update the cluster mean with a decreasing learning rate. For each data batch, the points are all first assigned to a cluster and then means are re-calculated. The cluster centres are then further re-calculated using gradient descent. This algorithm provides faster convergence than the typical k-means, but with a slightly different cluster output.",k_means
+What are the possible stopping conditions in the K means Algorithm?,"The following can be used as possible stopping conditions in K-Means clustering:
+Max number of iterations has been reached: This condition limits the runtime of the clustering algorithm, but in some cases, the quality of the clustering will be poor because of an insufficient number of iterations.
+When RSS(within-cluster sum of squares) falls below a threshold: This criterion ensures that the clustering is of the desired quality after termination. Practically in real-life problems, it’s a good practice to combine it with a bound on the number of iterations to guarantee convergence.
+Convergence: Points stay in the same cluster i.e., the algorithm has converged at the minima.
+Stability: Centroids of new clusters do not change.",k_means
+What is the effect of the number of variables on the K means Algorithm?,"The number of variables going into K means the algorithm has an impact on both the time(during training) and complexity(upon application) along with the behaviour of the algorithm as well.
+This is also related to the “Curse of dimensionality”. As the dimensionality of the dataset increases, more and more examples become nearest neighbours of xt, until the choice of nearest neighbour is effectively random. A key component of K means is that the distance-based computations are directly impacted by a large number of dimensions since the distances between a data point and its nearest and farthest neighbours can become equidistant in high dimension thereby resulting in reduced accuracy of distance-based analysis tools.
+Therefore, we have to use the Dimensionality reduction techniques such as Principal component analysis (PCA), or Feature Selection Techniques.",k_means
+Explain the Curse of Dimensionality?,"The curse of dimensionality refers to all the problems that arise working with data in the higher dimensions. As the number of features increase, the number of samples increases, hence, the model becomes more complex. The more the number of features, the more the chances of overfitting. A machine learning model that is trained on a large number of features, gets increasingly dependent on the data it was trained on and in turn overfitted, resulting in poor performance on real data, beating the purpose. The fewer features our training data has, the lesser assumptions our model makes and the simpler it will be.",PCA
+Why do we need dimensionality reduction? What are its drawbacks?,"In Machine Learning, dimension refers to the number of features. Dimensionality reduction is simply, the process of reducing the dimension of your feature set.
+Advantages of Dimensionality Reduction:
+Less misleading data means model accuracy improves.
+Fewer dimensions mean less computing. Less data means that algorithms train faster.
+Less data means less storage space required.
+Removes redundant features and noise.
+Dimensionality Reduction helps us visualize the data on 2D plots or 3D plots.
+Drawbacks of Dimensionality Reduction are:
+Some information is lost, possibly degrading the performance of subsequent training algorithms.
+It can be computationally intensive.
+Transformed features are often hard to interpret.
+It makes the independent variables less interpretable.",PCA
+"Explain Principal Component Analysis, assumptions, equations.","Principal Component Analysis (PCA) is an unsupervised dimensionality reduction algorithm. It identifies the hyperplane that lies closest to the data, and then it projects the data onto it preserving the variance. PCA selects the axis which preserves maximum variance in the training set. PCA finds as many axes as the number of dimensions such that every axis is orthogonal to each other.
+Assumptions:
+There needs to be a linear relationship between all variables. The reason for this assumption is that a PCA is based on Pearson correlation coefficients, and as such, there needs to be a linear relationship between the variables
+You should have sampling adequacy, which simply means that for PCA to produce a reliable result, large enough sample sizes are required.
+Your data should be suitable for data reduction. Effectively, you need to have adequate correlations between the variables to be reduced to a smaller number of components.
+There should be no significant outliers.",PCA
+Can PCA be used to reduce the dimensionality of a highly nonlinear dataset?,"PCA can be used to significantly reduce the dimensionality of most datasets, even if they are highly nonlinear because it can at least get rid of useless dimensions. However, if there are no useless dimensions, reducing dimensionality with PCA will lose too much information.",PCA
+Limitations of PCA?,"1. Doesn’t work well for non linearly correlated data.
+2. PCA always finds orthogonal principal components. Sometimes, our data demands non-orthogonal principal components to represent the data.
+3. PCA always considered the low variance components in the data as noise and recommend us to throw away those components. But, sometimes those components play a major role in a supervised learning task.
+4. If the variables are correlated, PCA can achieve dimension reduction. If not, PCA just orders them according to their variances",PCA
+"Is rotation necessary in PCA? If yes, Why? What will happen if you do not rotate the components?","Yes, rotation (orthogonal) is necessary to account the maximum variance of the training set. If we don’t rotate the components, the effect of PCA will diminish and we’ll have to select more number of components to explain variance in the training set.",PCA
+Is it important to standardize before applying PCA?,"PCA finds new directions based on the covariance matrix of original variables. Since the covariance matrix is sensitive to the standardization of variables. Usually, we do standardization to assign equal weights to all the variables. If we use features of different scales, we get misleading directions. But, it is not necessary to standardize the variables, if all the variables are on the same scale.",PCA
+Should one remove highly correlated variables before doing PCA?,"No, PCA loads out all highly correlated variables on the same Principal Component(Eigenvector), not different ones.",PCA
+What will happen when eigenvalues are roughly equal?,"If all eigenvectors are same then PCA won’t be able to select the principal components because in that case, all principal components are equal.",PCA
+How can you evaluate the performance of a dimensionality reduction algorithm on your dataset?,"Intuitively, a dimensionality reduction algorithm performs well if it eliminates a lot of dimensions from the dataset without losing too much information. Alternatively, if you are using dimensionality reduction as a preprocessing step before another Machine Learning algorithm (e.g., a Random Forest classifier), then you can simply measure the performance of that second algorithm; if dimensionality reduction did not lose too much information, then the algorithm should perform just as well as when using the original dataset.",PCA
+ What do you mean by Random Forest Algorithm?,"Random forest is an ensemble machine learning technique that averages several decision trees on different parts of the same training set, with the objective of overcoming the overfitting problem of the individual decision trees.
+
+In other words, a random forest algorithm is used for both classification and regression problem statements that operate by constructing a lot of decision trees at training time.
+
+Decision Tree vs. Random Forest - Which Algorithm Should you Use? |Bagging",Random_forest
+Why is Random Forest Algorithm popular?,Random Forest is one of the most popular and widely used machine learning algorithms for classification problems. It can also be used for the regression problem statements but it mainly performs well on the classification model.,Random_forest
+Can Random Forest Algorithm be used both for Continuous and Categorical Target Variables?,"Yes, Random Forest can be used for both continuous and categorical target (dependent) variables.
+
+In a random forest i.e, the combination of decision trees, the classification model refers to the categorical dependent variable, and the regression model refers to the numeric or continuous dependent variable.",Random_forest
+What do you mean by Bagging?,"Bagging, also known as Bootstrap-Aggregating, involves generating K’s new training data sets. Each new training data set picks a sample of data points with replacement (known as bootstrap samples) from the original data set.
+
+By sampling with replacement, means some of the data points may be repeated in each new training data set. The K models are fitted using the K bootstrap samples formed and then for predictions we combined the result of all trees by averaging the output (for regression) or voting (for classification).
+
+Bagging - (Bootstrap aggregating) :: InBlog",Random_forest
+Explain the working of the Random Forest Algorithm.,"The steps that are included while performing the random forest algorithm are as follows:
+
+Step-1: Pick K random records from the dataset having a total of N records.
+
+Step-2: Build and train a decision tree model on these K records.
+
+Step-3: Choose the number of trees you want in your algorithm and repeat steps 1 and 2.
+
+Step-4: In the case of a regression problem, for an unseen data point, each tree in the forest predicts a value for output. The final value can be calculated by taking the mean or average of all the values predicted by all the trees in the forest.
+
+and, in the case of a classification problem, each tree in the forest predicts the class to which the new data point belongs.",Random_forest
+Why do we prefer a Forest (collection of Trees) rather than a single Tree?,"While building a machine learning model, our aim is to generalize the model properly for giving predictions on unseen data.
+
+The problem of overfitting takes place when we have a flexible model. A flexible model is having high variance because the learned parameters like the structure of the decision tree, etc will vary with the training data. On the contrary, an inflexible model is said to have a high bias as it makes assumptions about the training data and an inflexible model may not have the capacity to fit even the training data and in both situations, the model has high variance, and high bias implies the model is not able to generalize new and unseen data points properly.
+
+So, we have to build a model carefully by keeping the bias-variance tradeoff in mind.
+
+The main reason for the overfitting of the decision tree due to not put the limit on the maximum depth of the tree is because it has unlimited flexibility, which means it keeps growing unless, for every single observation, there is one leaf node present.
+
+Moreover, instead of limiting the depth of the tree which results in reduced variance and an increase in bias, we can combine many decision trees that eventually convert into a forest, known as a single ensemble model (known as the random forest).",Random_forest
+What do you mean by Bootstrap Sample?,"Out-of-Bag is equivalent to validation or test data. In random forests, there is no need for a separate testing dataset to validate the result. It is calculated internally, during the algorithm run, in the following manner –
+
+As the forest is built on training data, each tree is tested on 1/3rd of the samples (36.8%) that are not used in building that tree (similar to the validation data set).
+
+This is known as the out-of-bag error estimate which in short is an internal error estimate of a random forest as it is being constructed.",Random_forest
+What does random refer to in ‘Random Forest’?,"‘Random’ in Random Forest refers to mainly two processes –
+
+Random observations to grow each tree.
+Random variables selected for splitting at each node.
+Random Record Selection: Each tree in the forest is trained on roughly 2/3rd of the total training data (exactly 63.2%) and here the data points are drawn at random with replacement from the original training dataset. This sample will act as the training set for growing the tree.
+
+Random Variable Selection: Some independent variables(predictors) say, m are selected at random out of all the predictor variables, and the best split on this m is used to split the node.",Random_forest
+List down the features of Bagged Trees.,"The main features of Bagged Trees are as follows:
+
+1. Reduces variance by averaging the ensemble’s results.
+
+2. The resulting model uses the entire feature space when considering node splits.
+
+3. It allows the trees to grow without pruning, reducing the tree-depth sizes which result in high variance but lower bias, which can help improve the prediction power.",Random_forest
+ What are the Limitations of Bagging Trees?,"The major limitation of bagging trees is that it uses the entire feature space when creating splits in the trees.
+
+Suppose from all the variables within the feature space, some are indicating certain predictions, so there is a risk of having a forest of correlated trees, which actually increases bias and reduces variance. So, our objective is not achieved due to these issues.",Random_forest
+ List down the factors on which the forest error rate depends upon.,"The forest error rate in Random forest depends on the following two factors:
+
+1. How correlated the two trees in the forest are i.e, 
+
+The correlation between any two different trees in the forest. Increasing the correlation increases the forest error rate.
+
+2. How strong each individual tree in the forest is i.e, 
+
+The strength of each individual tree in the forest. In a forest, a tree having a low error rate is considered a strong classifier. Increasing the strength of the individual trees eventually leads to a decrement in the forest error rate.
+
+Moreover, reducing the value of mtry i.e, the number of random variables used in each tree reduces both the correlation and the strength. Increasing it increases both. So, in between, there exists an “optimal” range of mtry which is usually quite a wide range.
+
+Using the OOB error rate, a value of mtry can quickly be found in the range. This parameter is only adjustable from which random forests are somewhat sensitive.",Random_forest
+ How does a Random Forest Algorithm give predictions on an unseen dataset?,"After training the algorithm, each tree in the forest gives a classification on leftover data (OOB), and we say the tree “votes” for that class. Then finally, the forest chooses the classification having the most votes over all the trees in the forest.
+
+For a binary dependent variable, the vote will be either YES or NO, and finally, it will count up the YES votes. This is the Random Forest (RF) score and the percent YES votes received is the predicted probability. In the regression case, it is the average of the dependent variable.
+
+For example, suppose we fit 500 trees in a forest, and a case is out-of-bag in 200 of them:
+
+160 trees vote class 1
+40 trees vote class 2
+In this case, the RF score is class1 since the probability for that case would be 0.8 which is 160/200. Similarly, it would be an average of the target variable for the regression problem.",Random_forest
+How to determine the overall OOB score for the classification problem statements in a Random Forest Algorithm?,"For each tree, by using the leftover (36.8%) data, compute the misclassification rate, which is known as out of bag (OOB) error rate. Finally, we aggregate all the errors from all trees and we will determine the overall OOB error rate for the classification.
+
+For Example, If we grow 300 trees then on average a record will be OOB for about 37*3 =111 trees.",Random_forest
+How does random forest define the Proximity (Similarity) between observations?,"Random Forest defines proximity between two data points in the following way:
+
+Initialize proximities to zeroes.
+For any given tree, apply all the cases to the tree.
+If case i and case j both end up in the same node, then proximity prox(ij) between i and j increases by one.
+Accumulate over all trees in Random Forest and normalize by twice the number of trees in Random forest.
+Finally, it creates a proximity matrix i.e, a square matrix with entry as 1 on the diagonal and values between 0 and 1 in the off-diagonal positions. Proximities are close to 1 when the observations are “alike” and conversely the closer proximity to 0, implies the more dissimilar cases are.",Random_forest
+What is the use of proximity matrix in the random forest algorithm?,"A proximity matrix is used for the following cases :
+
+Missing value imputation
+Detection of outliers",Random_forest
+ List down the parameters used to fine-tune the Random Forest.,"Two parameters that have to fine-tune to improve the predictions that are important in the random forest algorithm are as follows:
+
+Number of trees used in the forest (n_tree)
+Number of random variables used in each of the trees in the forest (mtry)",Random_forest
+ How to find an optimal value of the hyperparameter “ n_tree”?,"To find an optimal value of n_tree, we first fix the value of mtry to the default value (sqrt of the total number of all predictors) and search for the optimal n_tree value.
+
+To find the value of n_tree (number of trees) that corresponds to a stable classifier, we train random forest models with different values of n_tree such as (100, 200, 300….,1,000).
+
+As a result, we have 10 Random Forest classifiers in our hand for each value of n_tree, record the OOB error rate and see that value of n_tree where the out-of-bag error rate stabilizes and reaches its minimum value.",Random_forest
+ How to find an optimal value of the hyperparameter “mtry”?,"The following two ways can be used to find the optimal value of mtry :
+
+1. Apply a similar procedure as in finding the optimal n_tree such that random forest is run 10 times. The optimal number of predictors selected for split is selected for which the out-of-bag error rate stabilizes and reaches the minimum.
+
+2. In this method, we are doing the experiment by including the values such as the square root of the total number of all predictors, half of this square root value, and twice of the square root value, etc and at the same time check which value of mtry gives the maximum area under the curve.
+
+For Example, Suppose we have 1000 predictors, then the number of predictors to select for each node would be 16, 32, and 64.",Random_forest
+How do Random Forests select the Important Features?,"Sometimes random forests can also be used to determine the importance of variables i.e, rank in a regression or classification problem.
+
+The factors that are used to find the rank of the variables are as follows:
+
+Mean Decrease Accuracy: If we drop that variable, how much the model accuracy decreases.
+Mean Decrease Gini: This measure of variable importance is used for the calculation of splits in trees based on the Gini impurity index.
+Conclusion: The higher the value of mean decrease accuracy or mean decrease Gini score, the higher the importance of the variable in the model.",Random_forest
+Explain the steps of calculating Variable Importance in Random Forest.,"The steps for calculating variable importance in Random Forest Algorithm are as follows:
+
+1. For each tree grown in a random forest, find the number of votes for the correct class in out-of-bag data.
+
+2. Now perform random permutation of a predictor’s values (let’s say variable-k) in the OOB data and then check the number of votes for the correct class. By “random permutation of a predictor’s values”, it means changing the order of values (shuffling).
+
+3. At this step, we subtract the number of votes for the correct class in the variable-k-permuted data from the number of votes for the correct class in the original OOB data.
+
+4. Now, the raw importance score for variable k is the average of this number over all trees in the forest. Then, we normalized the score by taking the standard deviation.
+
+5. Variables having large values for this score are ranked as more important as building a current model without original values of a variable gives a worse prediction, which means the variable is important.",Random_forest
+List down some of the shortcomings of the Random Forest Algorithm.,"The shortcomings of the Random Forest algorithm are as follows:
+
+1. Random Forests aren’t good at generalizing cases with completely new data.
+
+For Example, If we know that the cost of one ice cream is $1, 2 ice-creams cost $2, and 3 ice-creams cost $3, then how much do 10 ice-creams cost? In such cases, Linear regression models can easily figure this out, while a Random Forest has no way of finding the answer.
+
+2. Random forests are biased towards the categorical variable having multiple levels or categories. It is because the feature selection technique is based on the reduction in impurity and is biased towards preferring variables with more categories so the variable selection is not accurate for this type of data.",Random_forest
+ List down the advantages and disadvantages of the Random Forest Algorithm.,"Random Forest is unbiased as we train multiple decision trees and each tree is trained on a subset of the same training data.
+It is very stable since if we introduce the new data points in the dataset, then it does not affect much as the new data point impacts one tree, and is pretty hard to impact all the trees.
+Also, it works well when you have both categorical and numerical features in the problem statement.
+It performs very well, with missing values in the dataset.
+Disadvantages:
+
+Complexity is the major disadvantage of this algorithm. More computational resources are required and also results in a large number of decision trees combined together.
+Due to their complexity, training time is more compared to other algorithms.",Random_forest
+What are Support Vector Machines (SVMs)?,"SVM is a supervised machine learning algorithm that works on both classification and regression problem statements. For classification problem statements, it tries to differentiate data points of different classes by finding a hyperplane that maximizes the margin between the classes in the training data. In simple words, SVM tries to choose the hyperplane which separates the data points as widely as possible since this margin maximization improves the model’s accuracy on the test or the unseen data.",SVM
+What are Support Vectors in SVMs?,"Support vectors are those instances that are located on the margin itself. For SVMS, the decision boundary is entirely determined by using only the support vectors. Any instance that is not a support vector (not on the margin boundaries) has no influence whatsoever; you could remove them or add more instances, or move them around, and as long as they stay off the margin they won’t affect the decision boundary. For computing the predictions, only the support vectors are involved, not the whole training set",SVM
+What is the basic principle of a Support Vector Machine?,"It’s aimed at finding an optimal hyperplane that is linearly separable, and for the dataset which is not directly linearly separable, it extends its formulation by transforming the original data to map into a new space, which is also called kernel trick.",SVM
+What are hard margin and soft Margin SVMs?,"Hard margin SVMs work only if the data is linearly separable and these types of SVMs are quite sensitive to the outliers. But our main objective is to find a good balance between keeping the margins as large as possible and limiting the margin violation i.e. instances that end up in the middle of margin or even on the wrong side, and this method is called soft margin SVM.",SVM
+What do you mean by Hinge loss?,"Properties of Hinge loss function: It is equal to 0 when the value of t is greater than or equal to 1 i.e, t>=1. Its derivative (slope) is equal to –1 if t < 1 and 0 if t > 1. It is not differentiable at t = 1. It penalizes the model for wrongly classifying the instances and increases as far the instance is classified from the correct region of classification.",SVM
+ What is the “Kernel trick”?,A Kernel is a function capable of computing the dot product of instances mapped in higher dimension space without actually transforming all the instances into the higher feature space and calculating the dot product. This trick makes the whole process much less computationally expensive than that actual transformation to calculate the dot product and this is the essence of the kernel trick.,SVM
+What is the role of the C hyper-parameter in SVM? Does it affect the bias/variance trade-off?,The balance between keeping the margins as large as possible and limiting the margin violation is controlled by the C parameter: a small value leads to a wider street but more margin violation and a higher value of C makes fewer margin violations but ends up with a smaller margin and overfitting. Here thing becomes a little complex as we have conflicting objectives of making the slack variables as small as possible to reduce margin violation and make W as small as possible to increase the margin. This is where the role of the C hyperparameter comes in which allows us to define the trade-off between these two objectives.,SVM
+Explain different types of kernel functions.,"A function is called kernel if there exist a function ϕ that maps a and b into another space such that K(a, b) = ϕ(a)T · ϕ(b). So you can use K as a kernel since you just know that a mapping ϕ exists, even if you don’t know what ϕ function is.  These are the very good things about kernels. Some of the kernel functions are as follows: Polynomial Kernel: These are the kernel functions that represent the similarity of vectors in a feature space over polynomials of original variables. Gaussian Radial Basis Function (RBF) kernel:  Gaussian RBF kernel maps each training instance to an infinite-dimensional space, therefore it’s a good thing that you don’t need to perform the mapping.",SVM
+How you formulate SVM for a regression problem statement?,"For formulating SVM as a regression problem statement we have to reverse the objective: instead of trying to fit the largest possible street between two classes which we will do for classification problem statements while limiting margin violations, now for SVM Regression, it tries to fit as many instances as possible between the margin while limiting the margin violations.",SVM
+What affects the decision boundary in SVM?,"Adding more instances off the margin of the hyperplane does not affect the decision boundary, it is fully determined (or supported ) by the instances located at the edge of the street called support vectors",SVM
+What is a slack variable?,"To meet the soft margin objective, we need to introduce a slack variable ε>=0 for each sample; it measures how much any particular instance is allowed to violate the margin. Here thing becomes little complex as we have conflicting objectives of making the slack variables as small as possible to reduce margin violation and make w (weight matrix) as small as possible to increase the margin. This is where the role of the C hyperparameter comes which allows us to define the trade-off between these two objectives.",SVM
+What is a dual and primal problem and how is it relevant to SVMs?,"Given a constrained optimization problem, known as the Primal problem, it is possible to express a different but closely related problem, which is known as its Dual problem. The solution to the dual problem typically provides a lower bound to the solution of the primal problem, but under some conditions, it can be possible that it has even the same solutions as the primal problem. Fortunately, the SVM problem completes these conditions, so that you can choose to solve the primal problem or the dual problem; and they both will have the same solution.",SVM
+Can an SVM classifier outputs a confidence score when it classifies an instance? What about a probability?,"An SVM classifier can give the distance between the test instance and the decision boundary as output, so we can use that as a confidence score, but we cannot use this score to directly converted it into class probabilities. But if you set probability=True when building a model of SVM in Scikit-Learn, then after training it will calibrate the probabilities using Logistic Regression on the SVM’s scores. By using this techniques, we can add the predict_proba() and predict_log_proba() methods to the SVM model.",SVM
+If you train an SVM classifier with an RBF kernel. It seems to underfit the training dataset: should you increase or decrease the hyper-parameter γ (gamma)? What about the C hyper-parameter?,"If we trained an SVM classifier using a Radial Basis Function (RBF) kernel, then it underfits the training set, so there might be too much regularization. To decrease it, you need to increase the gamma or C hyper-parameter.",SVM
+Is SVM sensitive to the Feature Scaling?,"Yes, SVMs are sensitive to feature scaling as it takes input data to find the margins around hyperplanes and gets biased for the variance in high values.",SVM
+What is the KNN Algorithm?,"KNN(K-nearest neighbours) is a supervised learning and non-parametric algorithm that can be used to solve both classification and regression problem statements. It uses data in which there is a target column present i.e, labelled data to model a function to produce an output for the unseen data. It uses the euclidean distance formula to compute the distance between the data points for classification or prediction. The main objective of this algorithm is that similar data points must be close to each other so it uses the distance to calculate the similar points that are close to each other.",KNN
+Why is KNN a non-parametric Algorithm?,"The term “non-parametric” refers to not making any assumptions on the underlying data distribution. These methods do not have any fixed numbers of parameters in the model. Similarly in KNN, the model parameters grow with the training data by considering each training case as a parameter of the model. So, KNN is a non-parametric algorithm.",KNN
+What is “K” in the KNN Algorithm?,"K represents the number of nearest neighbours you want to select to predict the class of a given item, which is coming as an unseen dataset for the model.",KNN
+Why is the odd value of “K” preferred over even values in the KNN Algorithm?,"The odd value of K should be preferred over even values in order to ensure that there are no ties in the voting. If the square root of a number of data points is even, then add or subtract 1 to it to make it odd.",KNN
+How does the KNN algorithm make the predictions on the unseen dataset?,"The following operations have happened during each iteration of the algorithm. For each of the unseen or test data point, the kNN classifier must: Step-1: Calculate the distances of test point to all points in the training set and store them. Step-2: Sort the calculated distances in increasing order. Step-3: Store the K nearest points from our training dataset. Step-4: Calculate the proportions of each class. Step-5: Assign the class with the highest proportion",KNN
+Is Feature Scaling required for the KNN Algorithm? Explain with proper justification.,"Yes, feature scaling is required to get the better performance of the KNN algorithm. For Example, Imagine a dataset having n number of instances and N number of features. There is one feature having values ranging between 0 and 1. Meanwhile, there is also a feature that varies from -999 to 999. When these values are substituted in the formula of Euclidean Distance, this will affect the performance by giving higher weightage to variables having a higher magnitude.",KNN
+What is space and time complexity of the KNN Algorithm?,"Time complexity: The distance calculation step requires quadratic time complexity, and the sorting of the calculated distances requires an O(N log N) time. Together, we can say that the process is an O(N3 log N) process, which is a monstrously long process. Space complexity: Since it stores all the pairwise distances and is sorted in memory on a machine, memory is also the problem. Usually, local machines will crash, if we have very large datasets.",KNN
+Can the KNN algorithm be used for regression problem statements?,"Yes, KNN can be used for regression problem statements. In other words, the KNN algorithm can be applied  when the dependent variable is continuous. For regression problem statements, the predicted value is given by the average of the values of its k nearest neighbours.",KNN
+Why is the KNN Algorithm known as Lazy Learner?,"When the KNN algorithm gets the training data, it does not learn and make a model, it just stores the data. Instead of finding any discriminative function with the help of the training data, it follows instance-based learning and also uses the training data when it actually needs to do some prediction on the unseen datasets. As a result, KNN does not immediately learn a model rather delays the learning thereby being referred to as Lazy Learner.",KNN
+Why is it recommended not to use the KNN Algorithm for large datasets?,"The Problem in processing the data: KNN works well with smaller datasets because it is a lazy learner. It needs to store all the data and then make a decision only at run time. It includes the computation of distances for a given point with all other points. So if the dataset is large, there will be a lot of processing which may adversely impact the performance of the algorithm. Sensitive to noise: Another thing in the context of large datasets is that there is more likely a chance of noise in the dataset which adversely affects the performance of the KNN algorithm since the KNN algorithm is sensitive to the noise present in the dataset.",KNN
+How to handle categorical variables in the KNN Algorithm?,"To handle the categorical variables we have to create dummy variables out of a categorical variable and include them instead of the original categorical variable. Unlike regression, create k dummies instead of (k-1). For example, a categorical variable named “Degree” has 5 unique levels or categories. So we will create 5 dummy variables. Each dummy variable has 1 against its degree and else 0.",KNN
+How to choose the optimal value of K in the KNN Algorithm?,"There is no straightforward method to find the optimal value of K in the KNN algorithm. You have to play around with different values to choose which value of K should be optimal for my problem statement. Choosing the right value of K is done through a process known as Hyperparameter Tuning. The optimum value of K for KNN is highly dependent on the data itself. In different scenarios, the optimum K may vary. It is more or less a hit and trial method. There is no one proper method of finding the K value in the KNN algorithm. No method is the rule of thumb but you should try the following suggestions: 1. Square Root Method: Take the square root of the number of samples in the training dataset and assign it to the K value. 2. Cross-Validation Method: We should also take the help of cross-validation to find out the optimal value of K in KNN. Start with the minimum value of k i.e, K=1, and run cross-validation, measure the accuracy, and keep repeating till the results become consistent. As the value of K increase,the error usually goes down after each one-step increase in K, then stabilizes, and then raises again. Finally, pick the optimum K at the beginning of the stable zone. This technique is also known as the Elbow Method",KNN
+How can you relate KNN Algorithm to the Bias-Variance tradeoff?,"Problem with having too small K: The major concern associated with small values of K lies behind the fact that the smaller value causes noise to have a higher influence on the result which will also lead to a large variance in the predictions. Problem with having too large K: The larger the value of K, the higher is the accuracy. If K is too large, then our model is under-fitted. As a result, the error will go up again. So, to prevent your model from under-fitting it should retain the generalization capabilities otherwise there are fair chances that your model may perform well in the training data but drastically fail in the real data. The computational expense of the algorithm also increases if we choose the k very large. So, choosing k to a large value may lead to a model with a large bias(error). The effects of k values on the bias and variance is explained below : As the value of k increases, the bias will be increases As the value of k decreases, the variance will increases With the increasing value of K, the boundary becomes smoother. So, there is a tradeoff between overfitting and underfitting and you have to maintain a balance while choosing the value of K in KNN. Therefore, K should not be too small or too large.",KNN
+Which algorithm can be used for value imputation in both categorical and continuous categories of data?,"KNN is the only algorithm that can be used for the imputation of both categorical and continuous variables. It can be used as one of many techniques when it comes to handling missing values. To impute a new sample, we determine the samples in the training set “nearest” to the new sample and averages the nearby points to impute. A Scikit learn library of Python provides a quick and convenient way to use this technique. Note: NaNs are omitted while distances are calculated. Hence we replace the missing values with the average value of the neighbours. The missing values will then be replaced by the average value of their “neighbours”.",KNN
+Explain the statement- “The KNN algorithm does more computation on test time rather than train time”.,"The above-given statement is absolutely true. The basic idea behind the kNN algorithm is to determine a k-long list of samples that are close to a sample that we want to classify. Therefore, the training phase is basically storing a training set, whereas during the prediction stage the algorithm looks for k-neighbours using that stored data. Moreover, KNN does not learn anything from the training dataset as well.",KNN
+What are the things which should be kept in our mind while choosing the value of k in the KNN Algorithm?,"If K is small, then results might not be reliable because the noise will have a higher influence on the result. If K is large, then there will be a lot of processing to be done which may adversely impact the performance of the algorithm. So, the following things must be considered while choosing the value of K: K should be the square root of n (number of data points in the training dataset). K should be chosen as the odd so that there are no ties. If the square root is even, then add or subtract 1 to it.",KNN
+What are the advantages of the KNN Algorithm?,"Some of the advantages of the KNN algorithm are as follows: 1. No Training Period: It does not learn anything during the training period since it does not find any discriminative function with the help of the training data. In simple words, actually, there is no training period for the KNN algorithm. It stores the training dataset and learns from it only when we use the algorithm for making the real-time predictions on the test dataset. As a result, the KNN algorithm is much faster than other algorithms which require training. For Example, SupportVector Machines(SVMs), Linear Regression, etc. Moreover, since the KNN algorithm does not require any training before making predictions as a result new data can be added seamlessly without impacting the accuracy of the algorithm. 2. Easy to implement and understand: To implement the KNN algorithm, we need only two parameters i.e. the value of K and the distance metric(e.g. Euclidean or Manhattan, etc.). Since both the parameters are easily interpretable therefore they are easy to understand.",KNN
+What are the disadvantages of the KNN Algorithm?,"Some of the disadvantages of the KNN algorithm are as follows: 1. Does not work well with large datasets: In large datasets, the cost of calculating the distance between the new point and each existing point is huge which decreases the performance of the algorithm. 2. Does not work well with high dimensions: KNN algorithms generally do not work well with high dimensional data since, with the increasing number of dimensions, it becomes difficult to calculate the distance for each dimension. 3. Need feature scaling: We need to do feature scaling (standardization and normalization) on the dataset before feeding it to the KNN algorithm otherwise it may generate wrong predictions. 4. Sensitive to Noise and Outliers: KNN is highly sensitive to the noise present in the dataset and requires manual imputation of the missing values along with outliers removal.",KNN
+Is it possible to use the KNN algorithm for Image processing?,"Yes, KNN can be used for image processing by converting a 3-dimensional image into a single-dimensional vector and then using it as the input to the KNN algorithm.",KNN
+What are the real-life applications of KNN Algorithms?,"The various real-life applications of the KNN Algorithm includes: 1. KNN allows the calculation of the credit rating. By collecting the financial characteristics vs. comparing people having similar financial features to a database we can calculate the same. Moreover, the very nature of a credit rating where people who have similar financial details would be given similar credit ratings also plays an important role. Hence the existing database can then be used to predict a new customer’s credit rating, without having to perform all the calculations. 2. In political science: KNN can also be used to predict whether a potential voter “will vote” or “will not vote”, or to “vote Democrat” or “vote Republican” in an election. Apart from the above-mentioned use cases, KNN algorithms are also used for handwriting detection (like OCR), Image recognition, and video recognition.",KNN
+Explain the introduction to Bayesian Statistics And Bayes Theorem?,"It calculates the degree of belief in a certain event and gives a probability of the occurrence of some statistical problem. Let’s consider an example: Suppose, from 4 basketball matches, John won 3 and Harry won only one. Now, if you have to bet on either John or Harry. So, what would you do? The answer is obvious – John. But, let’s add another factor to the match, which is rain. When Harry won, it was raining. But, when John won, out of 3 matches, 1 time it was raining. If the weather forecast says that there is an extremely high possibility of rain on the day of the next match. So, who would you bet on? Even without using it, you can tell that the comparison basis has changed and chances of Harry winning have increased. That is where Bayesian statistics PDF helps. Hence, the exact probability can be calculated with Bayes theorem. Introduction to Bayes Theorem Frequently Asked Bayesian Statistics Interview Questions and Answers Bayes Theorem Source Wikipedia The Bayes theorem is: P (A/B) = P(B/A)P(A) / P(B) Considering the above example, here’s what the values are: P(A) = ¼, Harry won one out of 4 matches. P(B) = ½, it rained two times out of 4 match days. P(B/A) = 1, when Harry won it was raining. Placing the values in the formula, the chances of Harry winning will become 50%, which was only 25% earlier. Check out this video for more information.",NAÏVE BAYES
+Explain The Bayes’ Box,"The Bayes’ box is a method of representing and solving probability through Bayes theorem. (a) Hypothesis, (b) Prior, (c) Likelihood, (d) Likelihood x Prior, (e) Posterior, A. 0.75, 1, 0.75, 0.857, B. 0.25, 0.5, 0.125, 0.143, Total = 0.875, 1. The prior probabilities are assumed values without additional factors. The likelihood is nothing but the probability of A and B. The posterior probabilities are results after considering added information. (For instance, rain in the above example). Bayesian Statistics PDF is a good resource to understand this concept with thorough details. ",NAÏVE BAYES
+Which Is Better Bayesian Or Frequentist Statistics?,"It shows a degree of belief, which means that it reflects our everyday knowledge of probability. When a person, who doesn’t know either frequentist or Bayesian, thinks of probability, then it will be Bayesian. These statistics give a value to your belief. Frequentists only find the probability of events or observations like a 50% probability of tails in a coin toss. Answering how much is the probability of a certain coin showing tails is not possible in frequentists. It will automatically assume prior values to be 0.5 in this case. ",NAÏVE BAYES
+How Bayesian Statistics Is Related To Machine Learning?,"Bayesian Inference: Machine learning simply tries to predict something about a certain system based on data available. But Bayesian statistics, on the other hand, is the degree of belief. Bayesian machine learning is useful when there are fewer data available. So, using this method, it is predicted what the model will look like based on prior knowledge. For instance, predicting whether a coin will land on tails lead to uncertainty. The scope of the answer will be limited. If you flip this coin 100 times and receive 50 tails and 50 heads, then you can say the probability is 50%. But, what if the result is 70 times tails and 30 times heads? We all know the probability of heads and tails while flipping a coin is 50-50. With less data, you have the chances of landing on an incorrect conclusion. Using Bayesian inference, will lead to an answer, which says, “If the coin is not biased, the probability is 70-30.” Hence, Bayesian induces uncertainty in answer to make it more relevant.",NAÏVE BAYES
+Explain Naive Bayes Classifier,"Naive Bayes Classifier Source Wikipedia. There are three naïve Bayes classifiers:The Multinomial classifier uses multinomial distribution on each word of a sentence. Every word is treated independently rather than being treated as a part of the sentence. The Gaussian classifier is utilized with continuous data. It assumes that each data class is distributed as a Gaussian distribution. The Bernoulli classifier assumes that every feature present is binary, which means it can only take either of the two values.",NAÏVE BAYES
+Explain The Strength Of Bayesian Statistics,"Naive Bayes Classifier Source Wikipedia. There are three naïve Bayes classifiers:The Multinomial classifier uses multinomial distribution on each word of a sentence. Every word is treated independently rather than being treated as a part of the sentence. The Gaussian classifier is utilized with continuous data. It assumes that each data class is distributed as a Gaussian distribution. The Bernoulli classifier assumes that every feature present is binary, which means it can only take either of the two values.",NAÏVE BAYES
+ Do You Think That Bayesian Statistics Has The Power To Replace Frequentists?,"Both frequentists and Bayesian statistics have specific applications, which is why these methods are used frequently. For instance, if you can solve a certain problem with both Bayesian and frequentists, use the one that does it simply. Suppose, when you have to solve huge problems that have streaming data, Bayesian will only give an approximation.",NAÏVE BAYES
+Explain The Difference Between Maximum Likelihood Estimation (MLE) And Bayesian Statistics,"Maximum Likelihood Estimation: Suppose, you tossed a coin 10 times, the result was 7 heads and 3 tails. This means that the probability of getting a “head” is 70% and “tail” is 30% in the 11th toss. This is one of the many possible arrangements and related estimation. The method is called maximum likelihood estimation. Now, since we know that the possibility of heads and tails is 50%, we can consider this prior information. Then, calculate what will be the outcome in the 11th toss. This method is Bayesian statistics. Bayesian Statistics PDF can provide you with detailed information on this.",NAÏVE BAYES
+What Are Some Unique Applications Of Bayesian Statistics And Bayes Theorem?,"There are various unique applications of it and Bayes theorem. Here are some of these: It can be used to decide whether a project will finish on time or not? There are only two possible outcomes, either it will finish on/before time or it will not. Using multiple blood samples to decide diseases. Utilizing it as a spam filter considering previous patterns. It is used to detect whether a certain water body is fit for various purposes such as drinking, agriculture, etc. Since, due to the presence of various pollutants, it is not possible to give an exact quantifier, the Bayesian method is used.",NAÏVE BAYES
+Why Bayesian Statistics Is Important?,"It is fundamentally sound and at some times, highly useful. In addition, it uses the rigid format of the likelihood of the outcome and prior knowledge of a possible situation. Then, the posterior probability is calculated. This rigid nature of the method sometimes helps in solving complex models. In addition, it is really essential in some instances because it quantifies a degree of belief. Hence, it can quantify and find the probability of if a certain belief is true or not. If we look at frequentist statistics, it can only quantify events and not a hypothesis.",NAÏVE BAYES
+Explain The Difference Between Bayes Theorem And Conditional Probability,"Conditional probability finds the probability of an event A in accordance with the occurrence of other event B. It is represented as: P(A|B) = P(A∩B)/P(B), P(A∩B) is the probability of both A and B occurring at the same time. P(A/B) is the probability of occurrence of A when B has already occurred. For example, you went to the market to buy cheese and butter. We know P(Cheese ∩ Butter) is 0.3, P(Cheese) is 0.4, and P(Butter) is 0.6. P( Cheese/Butter) = 1/2, P(Butter/ Cheese) = 3/4. Bayes theorem is actually an extension of conditional probability. It is represented as: P(A|B) = P(B|A) * P(A)/P(B). Here, The conditional probability answers the probability of occurrence of A when B has already occurred. In that case, the Bayes theorem answers using prior beliefs and comes to a posterior conclusion.",NAÏVE BAYES
+Explain The Inconsistencies In Bayesian Inference,"There are various loopholes in Bayesian inference:In most real-world examples, obtaining the prior probability is often hard. When both prior and likelihood become too complicated, MCMC (Markov chain Monte Carlo) sampling is used. This is extremely slow in real instances. In order to quantify the prior knowledge, the user can influence the result, unknowingly or knowingly.",NAÏVE BAYES
+What is the Decision Tree Algorithm?,A Decision Tree is a supervised machine learning algorithm that can be used for both Regression and Classification problem statements. It divides the complete dataset into smaller subsets while at the same time an associated Decision Tree is incrementally developed. The final output of the Decision Trees is a Tree having Decision nodes and leaf nodes. A Decision Tree can operate on both categorical and numerical data. Decision Trees Questions Algorithm,Decision tree
+List down some popular algorithms used for deriving Decision Trees along with their attribute selection measures.,Some of the popular algorithms used for constructing decision trees are: 1. ID3 (Iterative Dichotomiser): Uses Information Gain as attribute selection measure. 2. C4.5 (Successor of ID3):  Uses Gain Ratio as attribute selection measure. 3. CART (Classification and Regression Trees) – Uses Gini Index as attribute selection measure.,Decision tree
+Explain the CART Algorithm for Decision Trees.,"The CART stands for Classification and Regression Trees is a greedy algorithm that greedily searches for an optimum split at the top level, then repeats the same process at each of the subsequent levels. Moreover, it does verify whether the split will lead to the lowest impurity or not as well as the solution provided by the greedy algorithm is not guaranteed to be optimal, it often produces a solution that’s reasonably good since finding the optimal Tree is an NP-Complete problem that requires exponential time complexity. As a result, it makes the problem intractable even for small training sets. This is why we must go for a “reasonably good” solution instead of an optimal solution.",Decision tree
+List down the attribute selection measures used by the ID3 algorithm to construct a Decision Tree.,"The most widely used algorithm for building a Decision Tree is called ID3. ID3 uses Entropy and Information Gain as attribute selection measures to construct a Decision Tree. 1. Entropy:  A Decision Tree is built top-down from a root node and involves the partitioning of data into homogeneous subsets. To check the homogeneity of a sample, ID3 uses entropy. Therefore, entropy is zero when the sample is completely homogeneous, and entropy of one when the sample is equally divided between different classes. 2. Information Gain:  Information Gain is based on the decrease in entropy after splitting a dataset based on an attribute. The meaning of constructing a Decision Tree is all about finding the attributes having the highest information gain. Decision Trees Questions information gain entropy",Decision tree
+Briefly explain the properties of Gini Impurity.,"Let X (discrete random variable) takes values y₊ and y₋ (two classes). Now, let’s consider the different cases: Case- 1:  When 100% observations belong to y₊ . Then, the Gini impurity of the system would be: – Decision Trees Questions gini impurity. Case- 2:  When 50% observations belong to y₊ . Then, the Gini impurity of the system would be: Decision Trees Questions gini impurity example. Case- 3:  When 0% observations belong to y₊ . Then, the Gini impurity of the system would be: case 3. After observing all these cases, the graph of Gini impurity w.r.t to y₊ would come out to be: gini impurity graph",Decision tree
+Explain the difference between the CART and ID3 Algorithms.,"The CART algorithm produces only binary Trees: non-leaf nodes always have two children (i.e., questions only have yes/no answers). On the contrary, other Tree algorithms such as ID3 can produce Decision Trees with nodes having more than two children.",Decision tree
+Which should be preferred among Gini impurity and Entropy?,"In reality, most of the time it does not make a big difference: they lead to almost similar Trees. Gini impurity is a good default while implementing in sklearn since it is slightly faster to compute. However, when they work in a different way, then Gini impurity tends to isolate the most frequent class in its own branch of the Tree, while entropy tends to produce slightly more balanced Trees.",Decision tree
+List down the different types of nodes in Decision Trees.,The Decision Tree consists of the following different types of nodes: 1. Root node: It is the top-most node of the Tree from where the Tree starts. 2. Decision nodes: One or more Decision nodes that result in the splitting of data into multiple data segments and our main goal is to have the children nodes with maximum homogeneity or purity. 3. Leaf nodes: These nodes represent the data section having the highest homogeneity.,Decision tree
+"What do you understand about Information Gain? Also, explain the mathematical formulation associated with it.","Information gain is the difference between the entropy of a data segment before the split and after the split i.e, reduction in impurity due to the selection of an attribute. Some points keep in mind about information gain: The high difference represents high information gain. Higher the difference implies the lower entropy of all data segments resulting from the split. Thus, the higher the difference, the higher the information gain, and the better the feature used for the split. Mathematically, the information gain can be computed by the equation as follows: Information Gain = E(S1) – E(S2) – E(S1) denotes the entropy of data belonging to the node before the split. – E(S2) denotes the weighted summation of the entropy of children nodes by considering the weights as the proportion of data instances falling in specific children nodes.",Decision tree
+Do we require Feature Scaling for Decision Trees? Explain.,"Decision Trees are mainly intuitive, easy to interpret as well as require less data preparation. In fact, they don’t require feature scaling or centering(standardization) at all. Such models are often called white-box models. Decision Trees provide simple classification rules based on if and else statements which can even be applied manually if need be. For Example, Flower classification for the Iris dataset.",Decision tree
+What are the disadvantages of Information Gain?,"Information gain is defined as the reduction in entropy due to the selection of a particular attribute. Information gain biases the Decision Tree against considering attributes with a large number of distinct values which might lead to overfitting. In order to solve this problem, the Information Gain Ratio is used.",Decision tree
+List down the problem domains in which Decision Trees are most suitable.,"Decision Trees are suitable for the following cases: 1. Decision Trees are most suitable for tabular data. 2. The outputs are discrete. 3. Explanations for Decisions are required. 4. The training data may contain errors, noisy data(outliers). 5. The training data may contain missing feature values.",Decision tree
+Explain the time and space complexity of training and testing in the case of a Decision Tree.,"Time and Space complexity for Training: In the training stage for features (dimensions) in the dataset, we sort the data which takes O(n log n) time following which we traverse the data points to find the right threshold which takes O(n) time. Subsequently, for d dimensions, the total time complexity would be: Decision Trees Questions time and space complexity Usually while training a decision tree we identify the nodes which are typically stored in the form of if-else statements due to which training space complexity is O(nodes). Time and Space Complexity for Testing: Moreover, the testing time complexity is O(depth) as we have to traverse from the root to a leaf node of the decision tree i.e., testing space complexity is O(nodes).",Decision tree
+"If it takes one hour to train a Decision Tree on a training set containing 1 million instances, roughly how much time will it take to train another Decision Tree on a training set containing 10 million instances?","As we know that the computational complexity of training a Decision Tree is given by O(n × m log(m)). So, when we multiplied the size of the training set by 10, then the training time will be multiplied by some factor, say K. Now, we have to determine the value of K. To finds K, divide the complexity of both: K = (n × 10m × log(10m)) / (n × m × log(m)) = 10 × log(10m) / log(m). For 10 million instances i.e., m = 106, then we get the value of K ≈ 11.7. Therefore, we can expect the training time to be roughly 11.7 hours.",Decision tree
+How does a Decision Tree handle missing attribute values?,Decision Trees handle missing values in the following ways: Fill the missing attribute value by the most common value of that attribute. Fill the missing value by assigning a probability to each of the possible values of the attribute based on other samples.,Decision tree
+How does a Decision Tree handle continuous(numerical) features?,"Decision Trees handle continuous features by converting these continuous features to a threshold-based boolean feature. To decide The threshold value, we use the concept of Information Gain, choosing that threshold that maximizes the information gain.",Decision tree
+What is the Inductive Bias of Decision Trees?,"The ID3 algorithm preferred Shorter Trees over longer Trees. In Decision Trees, attributes having high information gain are placed close to the root are preferred over those that do not.",Decision tree
+Explain Feature Selection using the Information Gain/Entropy Technique.,The goal of the feature selection while building a Decision Tree is to select features or attributes (Decision nodes) which lead to a split in children nodes whose combined entropy adds up to lower entropy than the entropy value of the data segment before the split. This implies higher information gain.,Decision tree
+Compare the different attribute selection measures.,"The three measures, in general, returns good results, but: 1. Information Gain: It is biased towards multivalued attributes, 2. Gain ratio: It prefers unbalanced splits in which one data segment is much smaller than the other segment, 3. Gini Index: It is biased to multivalued attributes, has difficulty when the number of classes is large, tends to favor tests that result in equal-sized partitions and purity in both partitions.",Decision tree
+"Does the Gini Impurity of a node lower or greater than that of its parent. Comment whether it is generally lower/greater, or always lower/greater?","A node’s Gini impurity is generally lower than that of its parent as the CART training algorithm cost function splits each of the nodes in a way that minimizes the weighted sum of its children’s Gini impurities. However, sometimes it is also possible for a node to have a higher Gini impurity than its parent but in such cases, the increase is more than compensated by a decrease in the other child’s impurity. For better understanding we consider the following Example: Consider a node containing four samples of class A and one sample of class B. Then, its Gini impurity is calculated as 1 – (1/5)2 – (4/5)2= 0.32. Now suppose the dataset is one-dimensional and the instances are arranged in the manner: A, B, A, A, A. We can verify that the algorithm will split this node after the second instance, producing one child node with instances A, B, and the other child node with instances A, A, A. Then, the first child node’s Gini impurity is 1 – (1/2)2 – (1/2)2 = 0.5, which is higher than its parent’s. This is compensated for by the fact that the other node is pure, so its overall weighted Gini impurity is 2/5 × 0.5 + 3/5 × 0 = 0.2, which is lower than the parent’s Gini impurity.",Decision tree
+Why do we require Pruning in Decision Trees? Explain.,"After we create a Decision Tree we observe that most of the time the leaf nodes have very high homogeneity i.e., properly classified data. However, this also leads to overfitting. Moreover, if enough partitioning is not carried out then it would lead to underfitting. Hence the major challenge that arises is to find the optimal trees which result in the appropriate classification having acceptable accuracy. So to cater to those problems we first make the decision tree and then use the error rates to appropriately prune the trees.",Decision tree
+Are Decision Trees affected by the outliers? Explain.,"Decision Trees are not sensitive to noisy data or outliers since, extreme values or outliers, never cause much reduction in Residual Sum of Squares(RSS), because they are never involved in the split.",Decision tree
+What do you understand by Pruning in a Decision Tree?,"When we remove sub-nodes of a Decision node, this process is called pruning or the opposite process of splitting. The two techniques which are widely used for pruning are- Post and Pre Pruning. Post Pruning: This type of pruning is used after the construction of the Decision Tree. This technique is used when the Decision Tree will have a very large depth and will show the overfitting of the model. It is also known as backward pruning. This technique is used when we have an infinitely grown Decision Tree. Pre Pruning: This technique is used before the construction of the Decision Tree. Pre-Pruning can be done using Hyperparameter tuning overcome the overfitting issue.",Decision tree
+List down the advantages of the Decision Trees.,"1. Clear Visualization:  This algorithm is simple to understand, interpret and visualize as the idea is mostly used in our daily lives. The output of a Decision Tree can be easily interpreted by humans. 2. Simple and easy to understand: Decision Tree works in the same manner as simple if-else statements which are very easy to understand. 3. This can be used for both classification and regression problems. 4. Decision Trees can handle both continuous and categorical variables. 5. No feature scaling required: There is no requirement of feature scaling techniques such as standardization and normalization in the case of Decision Tree as it uses a rule-based approach instead of calculation of distances. 6. Handles nonlinear parameters efficiently: Unlike curve-based algorithms, the performance of decision trees can’t be affected by the Non-linear parameters. So, if there is high non-linearity present between the independent variables, Decision Trees may outperform as compared to other curve-based algorithms. 7. Decision Tree can automatically handle missing values. 8. Decision Tree handles the outliers automatically, hence they are usually robust to outliers. 9. Less Training Period: The training period of decision trees is less as compared to ensemble techniques like Random Forest because it generates only one Tree unlike the forest of trees in the Random Forest.",Decision tree
+List out the disadvantages of the Decision Trees.,"1. Overfitting: This is the major problem associated with the Decision Trees. It generally leads to overfitting of the data which ultimately leads to wrong predictions for testing data points. it keeps generating new nodes in order to fit the data including even noisy data and ultimately the Tree becomes too complex to interpret. In this way, it loses its generalization capabilities. Therefore, it performs well on the training dataset but starts making a lot of mistakes on the test dataset. 2. High variance: As mentioned, a Decision Tree generally leads to the overfitting of data. Due to the overfitting, there is more likely a chance of high variance in the output which leads to many errors in the final predictions and shows high inaccuracy in the results. So, in order to achieve zero bias (overfitting), it leads to high variance due to the bias-variance tradeoff. 3. Unstable: When we add new data points it can lead to regeneration of the overall Tree. Therefore, all nodes need to be recalculated and reconstructed. 4. Not suitable for large datasets: If the data size is large, then one single Tree may grow complex and lead to overfitting. So in this case, we should use Random Forest instead, an ensemble technique of a single Decision Tree.",Decision tree
+What do you mean by the Logistic Regression?,"It’s a classification algorithm that is used where the target variable is of categorical nature. The main objective behind Logistic Regression is to determine the relationship between features and the probability of a particular outcome.
+
+For Example, when we need to predict whether a student passes or fails in an exam given the number of hours spent studying as a feature, the target variable comprises two values i.e. pass and fail.
+
+Therefore, we can solve classification problem statements which is a supervised machine learning technique using Logistic Regression.",Logistic
+What do you mean by the Logistic Regression?,"Three different types of Logistic Regression are as follows:
+
+1. Binary Logistic Regression: In this, the target variable has only two 2 possible outcomes.
+
+For Example, 0 and 1, or pass and fail or true and false.
+
+2. Multinomial Logistic Regression: In this, the target variable can have three or more possible values without any order.
+
+For Example, Predicting preference of food i.e. Veg, Non-Veg, Vegan.
+
+3. Ordinal Logistic Regression: In this, the target variable can have three or more values with ordering.
+
+For Example, Movie rating from 1 to 5.",Logistic
+What do you mean by the Logistic Regression?,"
+By using the training dataset, we can find the dependent(x) and independent variables(y), so if we can determine the parameters w (Normal) and b (y-intercept), then we can easily find a decision boundary that can almost separate both the classes in a linear fashion.
+
+Objective:
+
+In order to train a Logistic Regression model, we just need w and b to find a line(in 2D), plane(3D), or hyperplane(in more than 3-D dimension) that can separate both the classes point as perfect as possible so that when it encounters with any new unseen data point, it can easily classify, from which class the unseen data point belongs to.
+
+For Example, Let us consider we have only two features as x1 and x2.
+
+Let’s take any of the +ve class points (figure below) and find the shortest distance from that point to the plane. Here, the shortest distance is computed using:
+
+di = wT*xi / ||w||
+
+If weight vector is a unit vector i.e, ||w||=1. Then,
+
+di = wT*xi
+
+Since w and xi are on the same side of the decision boundary therefore distance will be +ve. Now for a negative point, we have to compute dj = wT*xj. For point xj, distance will be -ve since this point is the opposite side of w.
+
+Thus we can conclude, points that are in the same direction of w are considered as +ve points and the points which are in the opposite direction of w are considered as -ve points.
+
+Logistic Regression Questions p-value
+
+Now, we can easily classify the unseen data points as -ve and +ve points. If the value of wT*xi>0, then y =+1 and if value of wT*xi < 0 then y = -1.
+
+If yi = +1 and wT*xi > 0, then the classifier classifies it as+ve points. This implies if yi*wT*xi > 0, then it is a correctly classified point because multiplying two +ve numbers will always be greater than 0.
+If yi = -1 and wT*xi < 0, then the classifier classifies it as -ve point. This implies if yi * wT*xi > 0 then it is a correctly classified point because multiplying two -ve numbers will always be greater than zero. So, for both +ve and -ve points the value of yi* wT*xi is greater than 0. Therefore, the model classifies the points xi correctly.
+If yi = +1 and wT*xi < 0, i.e, yi is +ve point but the classifier says that it is -ve then we will get -ve value. This means that point is classified as -ve but the actual class label is +ve, then it is a miss-classified point.
+If yi = -1 and wT*xi > 0, this means actual class label is -ve but classified as +ve, then it is miss-classified point( yi*wT*xi < 0).
+Now, by observing all the cases above now our objective is that our classifier minimizes the miss-classification error, i.e, we want the values of yi*wT*xi to be greater than 0.
+
+In our problem, xi and yi are fixed because these are coming from the dataset.
+
+As we change the values of the parameters w, and b the sum will change and we want to find that w and b that maximize the sum given below. To calculate the parameters w and b, we can use the Gradient Descent optimizer. Therefore, the optimization function for logistic regression is:
+
+Logistic Regression Questions argmax",Logistic
+ What are the odds?,"Odds are defined as the ratio of the probability of an event occurring to the probability of the event not occurring.
+
+For Example, let’s assume that the probability of winning a game is 0.02. Then, the probability of not winning is 1- 0.02 = 0.98.
+
+The odds of winning the game= (Probability of winning)/(probability of not winning)
+The odds of winning the game= 0.02/0.98
+The odds of winning the game are 1 to 49, and the odds of not winning the game are 49 to 1.",Logistic
+ What factors can attribute to the popularity of Logistic Regression?,"Logistic Regression is a popular algorithm as it converts the values of the log of odds which can range from -inf to +inf to a range between 0 and 1.
+
+Since logistic functions output the probability of occurrence of an event, they can be applied to many real-life scenarios therefore these models are very popular.
+
+ ",Logistic
+ Is the decision boundary Linear or Non-linear in the case of a Logistic Regression model?,"The decision boundary is a line or a plane that separates the target variables into different classes that can be either linear or nonlinear. In the case of a Logistic Regression model, the decision boundary is a straight line.
+
+Logistic Regression model formula = α+1X1+2X2+….+kXk. This clearly represents a straight line.
+
+It is suitable in cases where a straight line is able to separate the different classes. However, in cases where a straight line does not suffice then nonlinear algorithms are used to achieve better results.",Logistic
+ What is the Impact of Outliers on Logistic Regression?,"The estimates of the Logistic Regression are sensitive to unusual observations such as outliers, high leverage, and influential observations. Therefore, to solve the problem of outliers, a sigmoid function is used in Logistic Regression.",Logistic
+What is the difference between the outputs of the Logistic model and the Logistic function?,"The Logistic model outputs the logits, i.e. log-odds; whereas the Logistic function outputs the probabilities.
+
+Logistic model = α+1X1+2X2+….+kXk. Therefore, the output of the Logistic model will be logits.
+
+Logistic function = f(z) = 1/(1+e-(α+1X1+2X2+….+kXk)). Therefore, the output of the Logistic function will be the probabilities.",Logistic
+ How do we handle categorical variables in Logistic Regression?,"The inputs given to a Logistic Regression model need to be numeric. The algorithm cannot handle categorical variables directly. So, we need to convert the categorical data into a numerical format that is suitable for the algorithm to process.
+
+Each level of the categorical variable will be assigned a unique numeric value also known as a dummy variable. These dummy variables are handled by the Logistic Regression model in the same manner as any other numeric value.
+",Logistic
+"Which algorithm is better in the case of outliers present in the dataset i.e., Logistic Regression or SVM?","SVM (Support Vector Machines) handles the outliers in a better manner than the Logistic Regression.
+
+Logistic Regression: Logistic Regression will identify a linear boundary if it exists to accommodate the outliers. To accommodate the outliers, it will shift the linear boundary.
+
+SVM: SVM is insensitive to individual samples. So, to accommodate an outlier there will not be a major shift in the linear boundary. SVM comes with inbuilt complexity controls, which take care of overfitting, which is not true in the case of Logistic Regression.",Logistic
+What are the assumptions made in Logistic Regression?,"Some of the assumptions of Logistic Regression are as follows:
+
+1. It assumes that there is minimal or no multicollinearity among the independent variables i.e, predictors are not correlated.
+
+2. There should be a linear relationship between the logit of the outcome and each predictor variable. The logit function is described as logit(p) = log(p/(1-p)), where p is the probability of the target outcome.
+
+3. Sometimes to predict properly, it usually requires a large sample size.
+
+4. The Logistic Regression which has binary classification i.e, two classes assume that the target variable is binary, and ordered Logistic Regression requires the target variable to be ordered.
+
+For example, Too Little, About Right, Too Much.",Logistic
+ Can we solve the multiclass classification problems using Logistic Regression? If Yes then How?,"Yes, in order to deal with multiclass classification using Logistic Regression, the most famous method is known as the one-vs-all approach. In this approach, a number of models are trained, which is equal to the number of classes. These models work in a specific way.
+
+For Example, the first model classifies the datapoint depending on whether it belongs to class 1 or some other class(not class 1); the second model classifies the datapoint into class 2 or some other class(not class 2) and so-on for all other classes.
+
+So, in this manner, each data point can be checked over all the classes.",Logistic
+How can we express the probability of a Logistic Regression model as conditional probability?,"We define probability P(Discrete value of Target variable | X1, X2, X3…., Xk) as the probability of the target variable that takes up a discrete value (either 0 or 1 in the case of binary classification problems) when the values of independent variables are given.
+
+For Example, the probability an employee will attain (target variable) given his attributes such as his age, salary, etc.",Logistic
+Discuss the space complexity of Logistic Regression.,"During training: We need to store four things in memory: x, y, w, and b during training a Logistic Regression model.
+
+Storing b is just 1 step, i.e, O(1) operation since b is a constant.
+x and y are two matrices of dimension (n x d) and (n x 1) respectively. So, storing these two matrices takes O(nd + n) steps.
+Lastly, w is a vector of size-d. Storing it in memory takes O(d) steps.
+Therefore, the space complexity of Logistic Regression while training is O(nd + n +d).
+
+During Runtime or Testing: After training the model what we just need to keep in memory is w. We just need to perform wT*xi to classify the points.
+
+Hence, the space complexity during runtime is in the order of d, i.e, O(d).",Logistic
+ Discuss the Test or Runtime complexity of Logistic Regression.,"At the end of the training, we test our model on unseen data and calculate the accuracy of our model. At that time knowing about runtime complexity is very important. After the training of Logistic Regression, we get the parameters w and b.
+
+To classify any new point, we have to just perform the operation wT * xi. If wT*xi>0, the point is +ve, and if wT*xi < 0, the point is negative. As w is a vector of size d, performing the operation wT*xi takes O(d) steps as discussed earlier.
+
+Therefore, the testing complexity of the Logistic Regression is O(d).
+
+Hence, Logistic Regression is very good for low latency applications, i.e, for applications where the dimension of the data is small.",Logistic
+Why is Logistic Regression termed as Regression and not classification?,"The major difference between Regression and classification problem statements is that the target variable in the Regression is numerical (or continuous) whereas in classification it is categorical (or discrete).
+
+Logistic Regression is basically a supervised classification algorithm. However, the Logistic Regression builds a model just like linear regression in order to predict the probability that a given data point belongs to the category numbered as “1”.
+
+For Example, Let’s have a binary classification problem, and ‘x’ be some feature and ‘y’ be the target outcome which can be either 0 or 1.
+
+The probability that the target outcome is 1 given its input can be represented as:
+
+Logistic Regression Questions p(y)
+
+If we predict the probability by using linear Regression, we can describe it as:
+
+Logistic Regression Questions p(0)
+
+where, p(x) = p(y=1|x)
+
+Logistic regression models generate predicted probabilities as any number ranging from neg to pos infinity while the probability of an outcome can only lie between 0< P(x)<1.
+
+However, to solve the problem of outliers, a sigmoid function is used in Logistic Regression. The Linear equation is put in the sigmoid function.
+
+g(x)",Logistic
+ Discuss the Train complexity of Logistic Regression.,"In order to train a Logistic Regression model, we just need w and b to find a line(in 2-D), plane(in 3-D), or hyperplane(in more than 3-D dimension) that can separate both the classes point as perfect as possible so that when it encounters with any new point, it can easily classify, from which class the unseen data point belongs to.
+
+The value of w and b should be such that it maximizes the sum yi*wT*xi > 0.
+
+Now, let’s calculate its time complexity in terms of Big O notation:
+
+Performing the operation yi*wT*xi takes O(d) steps since w is a vector of size-d.
+Iterating the above step over n data points and finding the maximum sum takes n steps.
+aergmax
+
+Therefore, the overall time complexity of the Logistic Regression during training is n(O(d))=O(nd).",Logistic
+ Why can’t we use Mean Square Error (MSE) as a cost function for Logistic Regression?,"In Logistic Regression, we use the sigmoid function to perform a non-linear transformation to obtain the probabilities. If we square this nonlinear transformation, then it will lead to the problem of non-convexity with local minimums and by using gradient descent in such cases, it is not possible to find the global minimum. As a result, MSE is not suitable for Logistic Regression.
+
+So, in the Logistic Regression algorithm, we used Cross-entropy or log loss as a cost function. The property of the cost function for Logistic Regression is that:
+
+The confident wrong predictions are penalized heavily
+The confident right predictions are rewarded less
+By optimizing this cost function, convergence is achieved.
+
+cost",Logistic
+Why can’t we use Linear Regression in place of Logistic Regression for Binary classification?,"Linear Regressions cannot be used in the case of binary classification due to the following reasons:
+
+1. Distribution of error terms: The distribution of data in the case of Linear and Logistic Regression is different. It assumes that error terms are normally distributed. But this assumption does not hold true in the case of binary classification.
+
+2. Model output: In Linear Regression, the output is continuous(or numeric) while in the case of binary classification, an output of a continuous value does not make sense. For binary classification problems, Linear Regression may predict values that can go beyond the range between 0 and 1. In order to get the output in the form of probabilities, we can map these values to two different classes, then its range should be restricted to 0 and 1. As the Logistic Regression model can output probabilities with Logistic or sigmoid function, it is preferred over linear Regression.
+
+3. The variance of Residual errors: Linear Regression assumes that the variance of random errors is constant. This assumption is also not held in the case of Logistic Regression.",Logistic
+What are the advantages of Logistic Regression?,"The advantages of the logistic regression are as follows:
+
+1. Logistic Regression is very easy to understand.
+
+2. It requires less training.
+
+3. It performs well for simple datasets as well as when the data set is linearly separable.
+
+4. It doesn’t make any assumptions about the distributions of classes in feature space.
+
+5. A Logistic Regression model is less likely to be over-fitted but it can overfit in high dimensional datasets. To avoid over-fitting these scenarios, One may consider regularization.
+
+6. They are easier to implement, interpret, and very efficient to train.",Logistic
+What are the disadvantages of Logistic Regression?,"The disadvantages of the logistic regression are as follows:
+
+1. Sometimes a lot of Feature Engineering is required.
+
+2. If the independent features are correlated with each other it may affect the performance of the classifier.
+
+3. It is quite sensitive to noise and overfitting.
+
+4. Logistic Regression should not be used if the number of observations is lesser than the number of features, otherwise, it may lead to overfitting.
+
+5. By using Logistic Regression, non-linear problems can’t be solved because it has a linear decision surface. But in real-world scenarios, the linearly separable data is rarely found.
+
+6. By using Logistic Regression, it is tough to obtain complex relationships. Some algorithms such as neural networks, which are more powerful, and compact can easily outperform Logistic Regression algorithms.
+
+7. In Linear Regression, there is a linear relationship between independent and dependent variables but in Logistic Regression, independent variables are linearly related to the log odds (log(p/(1-p)).",Logistic
